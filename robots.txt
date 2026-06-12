@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /mailer/
+Disallow: /send-enquiry4.php
+Disallow: /recaptcha-config.php
+
+Sitemap: https://www.rankridge.com/sitemap.xml

@@ -1,0 +1,41 @@
+# ============================================================
+#  SECRETS — never commit (credentials / API secrets)
+#  NOTE: .gitignore does not support inline comments.
+# ============================================================
+
+# Gmail SMTP login + app password hardcoded
+send-enquiry4.php
+
+# reCAPTCHA secret key
+recaptcha-config.php
+
+# externalised mail credentials (if used)
+mail-config.php
+*-config.local.php
+.env
+.env.local
+
+# ============================================================
+#  Heavy backups — not needed in repo or on server
+# ============================================================
+asset/images/_originals/
+
+# ============================================================
+#  OS / editor junk
+# ============================================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# ============================================================
+#  Logs / temp
+# ============================================================
+*.log
+error_log
+php_errorlog
