@@ -358,3 +358,264 @@ body::after{content:"";position:fixed;inset:0;z-index:9993;pointer-events:none;o
 .rr-finalcta-foot{font-family:'Poppins',system-ui,sans-serif;color:#9fb3c8;line-height:1.6;
   font-size:clamp(.78rem,1.9vw,.9rem);margin:0;}
 .rr-finalcta-foot strong{color:#eaf2ff;}
+
+/* ============================================================
+   MOBILE HEADLINE FIT — keep headings to a max of 3 lines.
+   The hero H1 was hitting 4 lines because a tight 20ch cap
+   forced narrow wrapping; relax the cap + balance + trim font.
+   Desktop sizes (clamp max) are untouched.
+   ============================================================ */
+@media (max-width: 767px){
+  .rr-herohead-inner .rr-intro-title{max-width:30ch;}
+  .rr-intro-title{font-size:clamp(1.3rem,5vw,1.55rem);text-wrap:balance;}
+  .rr-prose .rr-intro-h2{font-size:clamp(1.25rem,4.2vw,1.7rem);max-width:28ch;}
+}
+
+/* ============================================================
+   ADMISSION FORM — dark/gold/lime redesign (matches screenshot)
+   Scoped to .admission-card so it doesn't touch anything else.
+   ============================================================ */
+.admission-section{
+  background:
+    radial-gradient(ellipse 85% 55% at 50% 0%, rgba(197,242,58,.05), transparent 60%),
+    linear-gradient(180deg,#070c14 0%,#0a1019 55%,#080d16 100%);
+}
+.admission-card{
+  background:linear-gradient(180deg,#0c1422 0%,#0a1019 100%);
+  border:2px solid #f5c521;
+  border-radius:18px;
+  padding:clamp(15px,4.5vw,20px) clamp(13px,4vw,17px);
+  box-shadow:0 18px 50px rgba(0,0,0,.5),0 0 26px rgba(245,197,33,.42),inset 0 0 0 1px rgba(245,197,33,.22);
+}
+.admission-card::before,.admission-card::after{display:none !important;}
+
+/* ---- Admissions Open badge ---- */
+.admission-card .top-badge{
+  position:relative;text-align:center;
+  border:1.5px solid #f5c521;border-radius:16px;
+  padding:clamp(11px,3.4vw,15px) clamp(8px,3vw,14px);
+  margin-bottom:clamp(13px,3.8vw,17px);
+  background:radial-gradient(130% 100% at 50% 0%,rgba(197,242,58,.07),transparent 70%);
+}
+/* corner shine glints on the Admissions-Open box boundary */
+.admission-card .top-badge::after{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;
+  background:
+    radial-gradient(circle 10px at 0 0,rgba(255,249,214,.95),transparent 72%),
+    radial-gradient(circle 10px at 100% 0,rgba(255,249,214,.95),transparent 72%),
+    radial-gradient(circle 10px at 0 100%,rgba(255,249,214,.95),transparent 72%),
+    radial-gradient(circle 10px at 100% 100%,rgba(255,249,214,.95),transparent 72%);
+}
+.admission-card .admissions-title{
+  margin:0 0 .5rem;font-family:'Montserrat',sans-serif;font-weight:900;
+  font-size:clamp(26px,8.5vw,36px);letter-spacing:.5px;line-height:1;color:#cdf24a;
+}
+.admission-card .apply-row{display:flex;align-items:center;justify-content:center;gap:10px;}
+.admission-card .apply-row .arrows{
+  color:#cdf24a;font-weight:900;font-size:clamp(15px,4.6vw,19px);letter-spacing:-1px;
+  text-shadow:0 0 8px rgba(197,242,58,.5);opacity:.92;}
+.admission-card .apply-pill{
+  display:inline-block;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:800;
+  font-size:clamp(15px,4.6vw,18px);color:#0a1408;letter-spacing:.3px;
+  background:linear-gradient(180deg,#d6f64f,#a9dd2c);
+  padding:.5rem 1.5rem;border-radius:999px;border:1px solid rgba(255,255,255,.3);
+  box-shadow:0 0 16px rgba(197,242,58,.5),inset 0 1px 0 rgba(255,255,255,.45);}
+
+/* ---- Begin / heading / cap ---- */
+.admission-card .begin-row{display:flex;align-items:center;gap:12px;margin:0 0 .35rem;}
+.admission-card .begin-row .line{
+  flex:1;height:2px;position:relative;border-radius:1px;
+  background:linear-gradient(90deg,transparent,rgba(245,197,33,.9) 20%,rgba(245,197,33,.9) 80%,transparent);}
+.admission-card .begin-row .line::after{
+  content:"";position:absolute;top:50%;width:4px;height:4px;border-radius:50%;
+  background:#e8c54a;transform:translateY(-50%);box-shadow:0 0 6px rgba(232,197,74,.7);}
+.admission-card .begin-row .line:first-child::after{right:0;}
+.admission-card .begin-row .line:last-child::after{left:0;}
+.admission-card .begin-text{
+  font-family:'Poppins',sans-serif;font-weight:600;font-size:clamp(13px,3.6vw,15px);
+  color:#c2cedd;letter-spacing:.4px;white-space:nowrap;}
+.admission-card .main-heading{
+  margin:.1rem 0;text-align:center;font-family:'Montserrat',sans-serif;font-weight:800;
+  font-size:clamp(22px,6.8vw,31px);line-height:1.1;letter-spacing:.3px;color:#fff;}
+.admission-card .main-heading .accent{color:#cdf24a;}
+.admission-card .cap-row{
+  display:flex;align-items:center;justify-content:center;
+  margin:.25rem 0 clamp(15px,4.2vw,19px);}
+.admission-card .cap-row svg{width:clamp(18px,4.8vw,22px);height:auto;display:block;}
+.admission-card .cap-row::before,.admission-card .cap-row::after{
+  content:"";width:clamp(38px,12vw,52px);height:1px;opacity:.75;
+  background:repeating-linear-gradient(90deg,#e8c54a 0 5px,transparent 5px 9px);}
+
+/* ---- form layout + fields ---- */
+.admission-card .admission-form{display:flex;flex-direction:column;gap:clamp(11px,3vw,13px);}
+.admission-card .field{
+  position:relative;display:flex;align-items:center;gap:12px;
+  background:#0e1a28;border:1px solid rgba(232,197,74,.22);border-radius:12px;
+  padding:clamp(8px,2.5vw,10px) clamp(12px,3.5vw,14px);
+  transition:border-color .18s ease,box-shadow .18s ease;}
+.admission-card .field:focus-within{
+  border-color:rgba(197,242,58,.55);box-shadow:0 0 0 3px rgba(197,242,58,.1);}
+.admission-card .field-icon{
+  flex-shrink:0;width:38px;height:38px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 35% 30%,rgba(197,242,58,.16),rgba(232,197,74,.05));
+  border:1px solid rgba(232,197,74,.45);}
+.admission-card .field-icon svg{
+  width:20px;height:20px;fill:none;stroke:#e8c54a;stroke-width:1.9;
+  stroke-linecap:round;stroke-linejoin:round;}
+.admission-card .field input,
+.admission-card .field select{
+  flex:1;width:100%;min-width:0;border:none;outline:none;background:transparent;
+  font-family:'Poppins',sans-serif;font-size:clamp(14px,4vw,15.5px);color:#eaf2ff;padding:6px 0;}
+.admission-card .field input::placeholder{color:#8896a8;opacity:1;}
+.admission-card .field select{
+  color:#8896a8;appearance:none;-webkit-appearance:none;-moz-appearance:none;cursor:pointer;
+  padding-right:26px;}
+.admission-card .field select:required:valid{color:#eaf2ff;}
+.admission-card .field select option{color:#0a1018;background:#eef3fa;}
+.admission-card .chevron-icon{position:absolute;right:14px;pointer-events:none;display:flex;}
+.admission-card .chevron-icon svg{
+  width:20px;height:20px;fill:none;stroke:#8896a8;stroke-width:2.2;
+  stroke-linecap:round;stroke-linejoin:round;}
+
+/* ---- consent checkbox ---- */
+.admission-card .checkbox-row{
+  display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin:.15rem 0;}
+.admission-card .checkbox-row input{position:absolute;opacity:0;width:0;height:0;}
+.admission-card .custom-cb{
+  flex-shrink:0;width:20px;height:20px;margin-top:1px;border-radius:5px;position:relative;
+  border:1.6px solid rgba(232,197,74,.55);background:rgba(255,255,255,.02);
+  transition:background .15s ease,border-color .15s ease;}
+.admission-card .checkbox-row input:checked + .custom-cb{background:#cdf24a;border-color:#cdf24a;}
+.admission-card .checkbox-row input:checked + .custom-cb::after{
+  content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;
+  border:solid #0a1408;border-width:0 2.5px 2.5px 0;transform:rotate(45deg);}
+.admission-card .checkbox-row input:focus-visible + .custom-cb{box-shadow:0 0 0 3px rgba(197,242,58,.25);}
+.admission-card .cb-text{
+  font-family:'Poppins',sans-serif;font-size:clamp(11.5px,3.2vw,12.5px);line-height:1.45;color:#aab6c6;}
+.admission-card .cb-text .green{color:#4fe08a;font-weight:600;}
+.admission-card .cb-text .orange{color:#f0a52a;font-weight:700;}
+
+/* ---- captcha ---- */
+.admission-card .captcha-box{
+  border:1px solid rgba(232,197,74,.22);border-radius:10px;padding:12px;background:#0c1726;
+  display:flex;justify-content:center;overflow:hidden;margin:0;min-height:0;}
+
+/* ---- submit ---- */
+.admission-card .submit-btn{
+  position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:800;
+  font-size:clamp(15px,4.4vw,18px);color:#0a1408;letter-spacing:.2px;
+  background:linear-gradient(180deg,#d6f64f 0%,#a9dd2c 100%);
+  border-radius:12px;padding:clamp(13px,3.6vw,16px) 46px;margin-top:.2rem;
+  box-shadow:0 0 22px rgba(197,242,58,.45),0 8px 20px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.4);
+  transition:filter .18s ease,transform .12s ease;}
+.admission-card .submit-btn:hover{filter:brightness(1.05);}
+.admission-card .submit-btn:active{transform:translateY(1px);}
+.admission-card .shield-svg{position:absolute;left:14px;width:26px;height:26px;flex-shrink:0;}
+.admission-card .submit-btn-text{text-align:center;}
+.admission-card .arrow-circle{
+  position:absolute;right:12px;width:30px;height:30px;border-radius:50%;background:#0a1408;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.admission-card .arrow-chevs{color:#cdf24a;font-weight:900;font-size:14px;letter-spacing:-1px;}
+
+/* ---- or divider ---- */
+.admission-card .or-row{display:flex;align-items:center;gap:12px;margin:.1rem 0;}
+.admission-card .or-line{
+  flex:1;height:2px;position:relative;border-radius:1px;
+  background:linear-gradient(90deg,transparent,rgba(245,197,33,.9) 20%,rgba(245,197,33,.9) 80%,transparent);}
+.admission-card .or-dot{
+  position:absolute;top:50%;width:5px;height:5px;border-radius:50%;background:#e8c54a;
+  transform:translateY(-50%);box-shadow:0 0 6px rgba(232,197,74,.6);right:0;}
+.admission-card .or-line--right .or-dot{left:0;right:auto;}
+.admission-card .or-text{
+  font-family:'Poppins',sans-serif;font-weight:600;color:#cdf24a;font-size:14px;}
+
+/* ---- scholarship button ---- */
+.admission-card .scholarship-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;width:100%;
+  border:1.5px solid rgba(232,197,74,.5);border-radius:12px;
+  padding:clamp(11px,3vw,13px) 16px;
+  background:linear-gradient(180deg,rgba(232,197,74,.07),rgba(232,197,74,.02));
+  box-shadow:0 0 14px rgba(232,197,74,.12);transition:border-color .18s ease,box-shadow .18s ease;}
+.admission-card .scholarship-btn:hover{border-color:rgba(232,197,74,.8);box-shadow:0 0 18px rgba(232,197,74,.22);}
+.admission-card .scholarship-icon{flex-shrink:0;width:30px;height:30px;display:flex;}
+.admission-card .scholarship-icon svg{width:100%;height:100%;}
+.admission-card .scholarship-btn-text{
+  font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(14px,4vw,16px);color:#cdf24a;}
+
+/* ---- call / whatsapp row ---- */
+.admission-card .contact-row{
+  display:flex;align-items:stretch;gap:8px;margin-top:.3rem;
+  background:#0c1726;border:1px solid rgba(232,197,74,.18);border-radius:12px;
+  padding:clamp(10px,3vw,12px) clamp(8px,2.5vw,10px);}
+.admission-card .contact-cell{
+  flex:1;min-width:0;display:flex;align-items:center;gap:10px;text-decoration:none;}
+.admission-card .icon-circle{
+  flex-shrink:0;width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;}
+.admission-card .icon-circle.gold{
+  background:radial-gradient(circle at 35% 30%,rgba(232,197,74,.2),rgba(232,197,74,.05));
+  border:1px solid rgba(232,197,74,.45);}
+.admission-card .icon-circle.gold svg{width:20px;height:20px;}
+.admission-card .icon-circle.wa{background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.4);}
+.admission-card .icon-circle.wa svg{width:22px;height:22px;}
+.admission-card .contact-copy{display:flex;flex-direction:column;gap:1px;min-width:0;}
+.admission-card .contact-label{
+  font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(12.5px,3.6vw,14px);line-height:1.1;}
+.admission-card .contact-cell:first-child .contact-label{color:#e8c54a;}
+.admission-card .contact-cell:last-child .contact-label{color:#4fe08a;}
+.admission-card .contact-sub{
+  font-family:'Poppins',sans-serif;font-size:clamp(10px,2.8vw,11px);color:#8b9bb0;line-height:1.3;}
+.admission-card .contact-divider{
+  width:1px;flex-shrink:0;position:relative;
+  background:linear-gradient(180deg,transparent,rgba(232,197,74,.4),transparent);}
+.admission-card .contact-divider-dot{
+  position:absolute;top:50%;left:50%;width:5px;height:5px;border-radius:50%;
+  background:#e8c54a;transform:translate(-50%,-50%);box-shadow:0 0 6px rgba(232,197,74,.6);}
+
+/* "Rankridge" brand word in any heading — brand lime on dark backgrounds */
+.rr-name{color:var(--rr-lime) !important;}
+/* on the white "What Makes Rankridge Different" header, use a readable theme green */
+.different-header-title .rr-name{color:#13994a !important;}
+/* "The Rankridge Success Strategy" heading — keep Rankridge white here */
+.strategy-hero-title .rr-name{color:#ffffff !important;}
+
+/* ============================================================
+   SMOOTHNESS — stop continuous (infinite-loop) decorative
+   animations. They ran forever and forced constant repaints,
+   the main cause of mobile scroll jank. Removing them is
+   visually unnoticeable. One-shot reveal entrances are kept.
+   ============================================================ */
+.morethan-hdr,
+.sch-strip-dot,
+.sch-badge-wrap,
+.sch-badge-shine,
+.sch-premium-underline,
+.faq-q,
+.site-footer-icon,
+.footer-cta-icon--phone,
+.footer-cta-icon--wa,
+.footer-cta-icon--phone svg,
+.footer-cta-icon--wa svg,
+.hero-img-placeholder,
+.anim-cap-bob,
+.anim-cta-glow,
+.admission-cta-circle,
+.call-pill,
+.anim-icon-float,
+.anim-icon-pulse,
+.admission-card,
+.stat-card,
+.testi-card,
+.stats-cta-star,
+.sch-feature-icon,
+.rr-totop,
+.hero-animated::before,
+.hero-animated::after,
+.curve-animated::before,
+.curve-animated::after,
+.testi-title-accent::after,
+.rr-intro::before{
+  animation: none !important;
+}

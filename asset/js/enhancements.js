@@ -123,7 +123,7 @@
         toast.classList.add('rr-show');
         setTimeout(function(){ toast.classList.remove('rr-show'); }, 5000);
       }
-      setTimeout(function(){ show(); setInterval(show, 13000); }, 8000);
+      setTimeout(function(){ show(); setInterval(show, 45000); }, 60000);
     })();
 
     /* ---- phone field: digits only, max 10 ---- */

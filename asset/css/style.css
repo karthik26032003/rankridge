@@ -5604,7 +5604,7 @@ a.site-footer-text[href^="tel:"]:hover {
     transform var(--reveal-duration) var(--reveal-ease),
     filter var(--reveal-duration) var(--reveal-ease);
   transition-delay: var(--reveal-delay, 0s);
-  will-change: opacity, transform, filter;
+  will-change: opacity, transform;
 }
 
 body.anim-ready .reveal:not(.is-visible) {
@@ -5617,7 +5617,6 @@ body.anim-ready .reveal-fade-up:not(.is-visible) {
 
 body.anim-ready .reveal-blur-up:not(.is-visible) {
   transform: translateY(28px);
-  filter: blur(8px);
 }
 
 body.anim-ready .reveal-zoom-in:not(.is-visible) {
@@ -5643,7 +5642,6 @@ body.anim-ready .reveal-flip-up:not(.is-visible) {
 
 body.anim-ready .reveal-pop-in:not(.is-visible) {
   transform: scale(0.75) translateY(16px);
-  filter: blur(4px);
 }
 
 body.anim-ready .reveal-drop-in:not(.is-visible) {

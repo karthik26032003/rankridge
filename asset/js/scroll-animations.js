@@ -157,8 +157,7 @@
     var heroSection = document.querySelector('.hero');
     if (heroSection) heroSection.classList.add('hero-animated');
 
-    var heroImg = document.querySelector('.hero-img-placeholder');
-    if (heroImg) addReveal(heroImg, 'reveal-zoom-out');
+    /* Hero image is the LCP element — never gate it behind the reveal system. */
 
     var heroCurve = document.querySelector('.hero-curve');
     if (heroCurve) heroCurve.classList.add('curve-animated');
@@ -218,7 +217,7 @@
 
     reveals.forEach(function (el) {
       var rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.95 && rect.bottom > 0) {
+      if (rect.top < window.innerHeight * 1.2 && rect.bottom > 0) {
         markRevealVisible(el);
       }
     });
@@ -231,8 +230,8 @@
         }
       });
     }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -5% 0px'
+      threshold: 0,
+      rootMargin: '0px 0px 20% 0px'
     });
 
     reveals.forEach(function (el) {
@@ -245,7 +244,7 @@
       reveals.forEach(function (el) {
         markRevealVisible(el);
       });
-    }, 2500);
+    }, 1000);
   }
 
   function initSectionFade() {
@@ -395,7 +394,7 @@
     initSectionIcons();
     initObserver();
     initSectionFade();
-    initHeroParallax();
+    /* Hero parallax disabled — scroll-driven transform caused jank on mobile. */
     initStatCounters();
     initFieldFocusAnim();
     initRippleOnCta();
