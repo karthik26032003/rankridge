@@ -276,13 +276,36 @@ body::after{content:"";position:fixed;inset:0;z-index:9993;pointer-events:none;o
 @media (max-width:520px){ .rr-checklist{grid-template-columns:1fr;} }
 
 /* ---- collapsible prose (read more / show less) ---- */
-/* mask fades the text out to transparent — works on ANY section background */
-.rr-prose.rr-clamp{max-height:19rem;overflow:hidden;
-  -webkit-mask-image:linear-gradient(180deg,#000 78%,transparent 100%);
-  mask-image:linear-gradient(180deg,#000 78%,transparent 100%);
+/* The expandable SEO prose sits inside a subtle, theme-aware "knowledge panel"
+   so it reads as a defined block with a clear boundary + slight surface lift,
+   fitting both the dark (navy) and light (white) sections. */
+.rr-prose{position:relative;border-radius:16px;
+  margin:clamp(22px,4vw,40px) auto;
+  padding:clamp(20px,4vw,34px) clamp(18px,4vw,32px);}
+.rr-prose::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;
+  border-radius:16px 16px 0 0;opacity:.85;
+  background:linear-gradient(90deg,var(--rr-lime),#00e5ff);}
+.section-theme-dark .rr-prose{background:#0e2444;
+  border:1px solid rgba(0,229,255,.15);
+  box-shadow:0 .5rem 1.5rem rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.04);}
+.section-theme-light .rr-prose{background:#f4f8ff;
+  border:1px solid rgba(10,35,66,.10);
+  box-shadow:0 .5rem 1.6rem rgba(10,35,66,.10);}
+
+/* clamp + bottom fade overlay (overlay fades into the panel surface so the
+   panel border stays crisp — replaces the old transparency mask) */
+.rr-prose.rr-clamp{max-height:22rem;overflow:hidden;
   transition:max-height .6s cubic-bezier(.16,.84,.34,1);}
-.rr-prose.rr-clamp.rr-expanded{-webkit-mask-image:none;mask-image:none;}
-.rr-readmore{display:flex;justify-content:center;margin:1rem auto 0;}
+.rr-prose.rr-clamp::after{content:"";position:absolute;left:0;right:0;bottom:0;
+  height:6.5rem;pointer-events:none;border-radius:0 0 16px 16px;transition:opacity .3s ease;}
+.section-theme-dark .rr-prose.rr-clamp::after{
+  background:linear-gradient(180deg,rgba(14,36,68,0),#0e2444 90%);}
+.section-theme-light .rr-prose.rr-clamp::after{
+  background:linear-gradient(180deg,rgba(244,248,255,0),#f4f8ff 90%);}
+.rr-prose.rr-clamp.rr-expanded::after{opacity:0;}
+
+/* read-more pill anchored to the panel's bottom edge */
+.rr-readmore{display:flex;justify-content:center;margin:-1.15rem auto 0;position:relative;z-index:2;}
 .rr-readmore-btn{display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
   font-family:'Poppins',system-ui,sans-serif;font-weight:800;font-size:.86rem;letter-spacing:.02em;
   color:#0a1626;background:linear-gradient(100deg,#9fe231,#cdf24a);border:none;
@@ -308,7 +331,7 @@ body::after{content:"";position:fixed;inset:0;z-index:9993;pointer-events:none;o
 @media (prefers-reduced-motion:reduce){ .rr-prose.rr-clamp{transition:none;} .rr-readmore-btn i{transition:none;} .rr-prose.rr-revealing > *{animation:none;} }
 
 /* ---- final CTA band (before footer) ---- */
-.rr-finalcta{position:relative;overflow:hidden;text-align:center;border-radius:1.2rem;
+.rr-finalcta{position:relative;overflow:hidden;text-align:center;border-radius:1rem;
   margin:clamp(28px,6vw,54px) 0 clamp(20px,4vw,32px);padding:clamp(28px,6vw,54px) clamp(18px,5vw,48px);
   background:linear-gradient(135deg,#06203f 0%,#0a2b56 55%,#08234a 100%);
   border:1.5px solid rgba(204,255,0,.4);box-shadow:0 1rem 3rem rgba(0,0,0,.4);}
