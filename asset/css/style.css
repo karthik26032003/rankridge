@@ -492,32 +492,17 @@ p {
    ============================================ */
 .hero {
   position: relative;
-  background: var(--navy);
+  background: #001b3d;
   padding: 20px 0 0;
   overflow: hidden;
 }
 
 .hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: none;
-  pointer-events: none;
-  z-index: 0;
+  content: none;
 }
 
 .hero::after {
-  content: '';
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: none;
-  pointer-events: none;
-  z-index: 0;
+  content: none;
 }
 
 .hero-inner {
