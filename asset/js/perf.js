@@ -136,6 +136,28 @@
       return;
     }
 
+    var submitBtn = form.querySelector('[type="submit"]');
+    var submitLbl = submitBtn ? submitBtn.querySelector('.submit-btn-text') : null;
+    var origLbl = submitLbl ? submitLbl.textContent : '';
+
+    function lockSubmit() {
+      form.dataset.submitting = '1';
+      if (submitBtn) {
+        submitBtn.style.pointerEvents = 'none';
+        submitBtn.style.opacity = '0.72';
+      }
+      if (submitLbl) submitLbl.textContent = 'Submitting…';
+    }
+
+    function unlockSubmit() {
+      form.dataset.submitting = '';
+      if (submitBtn) {
+        submitBtn.style.pointerEvents = '';
+        submitBtn.style.opacity = '';
+      }
+      if (submitLbl) submitLbl.textContent = origLbl;
+    }
+
     form.addEventListener('focusin', loadRecaptcha, { once: true });
     form.addEventListener('submit', function (event) {
       loadRecaptcha();
@@ -146,8 +168,18 @@
       }
       if (!validateRecaptcha()) {
         event.preventDefault();
+        return;
       }
+      // validation passed — block duplicate submits while the page POSTs
+      if (form.dataset.submitting === '1') {
+        event.preventDefault();
+        return;
+      }
+      lockSubmit();
     });
+
+    // restore the button if the user returns (validation error -> history.back, or bfcache)
+    window.addEventListener('pageshow', unlockSubmit);
   }
 
   function init() {

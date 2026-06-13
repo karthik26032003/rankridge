@@ -155,6 +155,12 @@
         if (prose.scrollHeight <= THRESHOLD) return;
         prose.classList.add('rr-clamp');
 
+        /* wrap prose in a card so the border surrounds the text AND the toggle */
+        var card = document.createElement('div');
+        card.className = 'rr-card';
+        prose.parentNode.insertBefore(card, prose);
+        card.appendChild(prose);
+
         var moreLabel = prose.getAttribute('data-more') || MORE_LABELS[idx % MORE_LABELS.length];
         var lessLabel = prose.getAttribute('data-less') || 'Show less';
         idx++;

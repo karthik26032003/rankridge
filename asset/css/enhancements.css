@@ -276,36 +276,35 @@ body::after{content:"";position:fixed;inset:0;z-index:9993;pointer-events:none;o
 @media (max-width:520px){ .rr-checklist{grid-template-columns:1fr;} }
 
 /* ---- collapsible prose (read more / show less) ---- */
-/* The expandable SEO prose sits inside a subtle, theme-aware "knowledge panel"
-   so it reads as a defined block with a clear boundary + slight surface lift,
-   fitting both the dark (navy) and light (white) sections. */
-.rr-prose{position:relative;border-radius:16px;
+/* The expandable SEO prose AND its toggle button sit inside ONE subtle,
+   theme-aware "knowledge card", so the boundary cleanly surrounds both. */
+.rr-card{position:relative;max-width:880px;border-radius:16px;
   margin:clamp(22px,4vw,40px) auto;
   padding:clamp(20px,4vw,34px) clamp(18px,4vw,32px);}
-.rr-prose::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;
+.rr-card::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;
   border-radius:16px 16px 0 0;opacity:.85;
   background:linear-gradient(90deg,var(--rr-lime),#00e5ff);}
-.section-theme-dark .rr-prose{background:#0e2444;
+.section-theme-dark .rr-card{background:#0e2444;
   border:1px solid rgba(0,229,255,.15);
   box-shadow:0 .5rem 1.5rem rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.04);}
-.section-theme-light .rr-prose{background:#f4f8ff;
+.section-theme-light .rr-card{background:#f4f8ff;
   border:1px solid rgba(10,35,66,.10);
   box-shadow:0 .5rem 1.6rem rgba(10,35,66,.10);}
+.rr-card .rr-prose{max-width:none;margin:0;}
 
-/* clamp + bottom fade overlay (overlay fades into the panel surface so the
-   panel border stays crisp — replaces the old transparency mask) */
-.rr-prose.rr-clamp{max-height:22rem;overflow:hidden;
+/* clamp + bottom fade overlay (fades into the card surface) */
+.rr-prose.rr-clamp{position:relative;max-height:18rem;overflow:hidden;
   transition:max-height .6s cubic-bezier(.16,.84,.34,1);}
 .rr-prose.rr-clamp::after{content:"";position:absolute;left:0;right:0;bottom:0;
-  height:6.5rem;pointer-events:none;border-radius:0 0 16px 16px;transition:opacity .3s ease;}
+  height:5.5rem;pointer-events:none;transition:opacity .3s ease;}
 .section-theme-dark .rr-prose.rr-clamp::after{
-  background:linear-gradient(180deg,rgba(14,36,68,0),#0e2444 90%);}
+  background:linear-gradient(180deg,rgba(14,36,68,0),#0e2444 92%);}
 .section-theme-light .rr-prose.rr-clamp::after{
-  background:linear-gradient(180deg,rgba(244,248,255,0),#f4f8ff 90%);}
+  background:linear-gradient(180deg,rgba(244,248,255,0),#f4f8ff 92%);}
 .rr-prose.rr-clamp.rr-expanded::after{opacity:0;}
 
-/* read-more pill anchored to the panel's bottom edge */
-.rr-readmore{display:flex;justify-content:center;margin:-1.15rem auto 0;position:relative;z-index:2;}
+/* toggle now sits INSIDE the card, just below the prose */
+.rr-readmore{display:flex;justify-content:center;margin:.9rem auto 0;position:relative;z-index:2;}
 .rr-readmore-btn{display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;
   font-family:'Poppins',system-ui,sans-serif;font-weight:800;font-size:.86rem;letter-spacing:.02em;
   color:#0a1626;background:linear-gradient(100deg,#9fe231,#cdf24a);border:none;
@@ -348,13 +347,17 @@ body::after{content:"";position:fixed;inset:0;z-index:9993;pointer-events:none;o
 .rr-finalcta-sub{font-family:'Poppins',system-ui,sans-serif;color:#cdd9ec;line-height:1.65;
   font-size:clamp(.9rem,2.2vw,1.04rem);max-width:60ch;margin:0 auto 1.4rem;}
 .rr-finalcta-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem;margin-bottom:1.2rem;}
-.rr-finalcta-btn{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;border-radius:.7rem;
-  font-family:'Poppins',system-ui,sans-serif;font-weight:800;font-size:clamp(.9rem,2.2vw,1rem);color:#fff;
-  padding:.85rem 1.5rem;transition:transform .18s ease,filter .18s ease;}
-.rr-finalcta-btn:hover{transform:translateY(-2px);filter:brightness(1.08);}
-.rr-finalcta-btn--call{background:linear-gradient(100deg,#1f9fe0,#1577c4);}
-.rr-finalcta-btn--wa{background:var(--rr-wa);}
-.rr-finalcta-btn i{font-size:1.1rem;}
+.rr-finalcta-btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+  text-decoration:none;border-radius:.85rem;
+  font-family:'Poppins',system-ui,sans-serif;font-weight:800;font-size:clamp(.92rem,2.3vw,1.02rem);color:#fff;
+  padding:.95rem 1.6rem;min-height:50px;
+  box-shadow:0 .5rem 1.2rem rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.22);
+  transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;}
+.rr-finalcta-btn:hover{transform:translateY(-2px);filter:brightness(1.06);
+  box-shadow:0 .75rem 1.5rem rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.22);}
+.rr-finalcta-btn--call{background:linear-gradient(135deg,#2bb6f0,#1577c4);}
+.rr-finalcta-btn--wa{background:linear-gradient(135deg,#2bdc70,#15a94c);}
+.rr-finalcta-btn .rr-finalcta-ico{width:1.2em;height:1.2em;flex-shrink:0;}
 .rr-finalcta-foot{font-family:'Poppins',system-ui,sans-serif;color:#9fb3c8;line-height:1.6;
   font-size:clamp(.78rem,1.9vw,.9rem);margin:0;}
 .rr-finalcta-foot strong{color:#eaf2ff;}
@@ -368,6 +371,8 @@ body::after{content:"";position:fixed;inset:0;z-index:9993;pointer-events:none;o
 @media (max-width: 767px){
   .rr-herohead-inner .rr-intro-title{max-width:30ch;}
   .rr-intro-title{font-size:clamp(1.3rem,5vw,1.55rem);text-wrap:balance;}
+  /* longer Page-2 hero H1 — bump size, wider cap so it still balances to 3 lines */
+  .rr-herohead-inner .rr-intro-title--lt{font-size:clamp(1.42rem,6vw,1.62rem);max-width:32ch;}
   .rr-prose .rr-intro-h2{font-size:clamp(1.25rem,4.2vw,1.7rem);max-width:28ch;}
 }
 
